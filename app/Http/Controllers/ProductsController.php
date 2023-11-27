@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -17,7 +17,11 @@ class ProductsController extends Controller
     public function index(Product $product): Response
     {
         return Inertia::render('Products/Index', [
-            'products' => Product::latest()->paginate(10),
+            'filters' => Request::all('search'),
+            'products' => Product::latest()
+                          ->filter(Request::only('search'))
+                          ->paginate(10)
+                          ->appends(Request::all())
         ]);
     }
 
@@ -32,9 +36,9 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(): RedirectResponse
     {
-        $validated = $request->validate([
+        $validated = Request::validate([
             'title' => 'required|string|max:150',
         ]);
 
@@ -66,9 +70,9 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product): RedirectResponse
+    public function update(Product $product): RedirectResponse
     {
-        $validated = $request->validate([
+        $validated = Request::validate([
             'title' => 'required|string|max:150',
         ]);
 
