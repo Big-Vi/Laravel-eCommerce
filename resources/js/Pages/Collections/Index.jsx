@@ -4,17 +4,17 @@ import SearchFilter from '@/Components/SearchFilter'
 import Layout from '@/Components/Layout'
 import Pagination from '@/Components/Pagination';
 
-export default function Index({ products }) {
+export default function Index({ collections }) {
     return (
         <div className="">
             <SearchFilter />
-            <Link href="/products/new">Add product</Link>
-            {products.data.map(product =>
-                <div key={product.id}>
-                    <Link href={`/products/${product.id}/edit`}>{product.title}</Link>
+            <Link href="/collections/new">Add collection</Link>
+            {collections.data.map(collection =>
+                <div key={collection.id}>
+                    <Link href={`/collections/${collection.id}/edit`}>{collection.title}</Link>
                 </div>
             )}
-            <Pagination links={products.links}/>
+            <Pagination links={collections.links}/>
         </div>
     )
 }

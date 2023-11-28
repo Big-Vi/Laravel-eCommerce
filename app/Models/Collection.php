@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Collection extends Model
 {
     use HasFactory;
 
     protected $fillable = ['title'];
 
-    public function collections() {
-        return $this->belongsToMany(Collection::class, 'collection_product', 'products_id', 'collections_id');
+    public function products() {
+        return $this->belongsToMany(Product::class, 'collection_product', 'collections_id', 'products_id');
     }
 
     public function scopeFilter($query, array $filters) {
