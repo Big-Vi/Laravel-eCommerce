@@ -3,21 +3,21 @@ import { Link } from '@inertiajs/react'
 export default function Pagination({links}) {
     return (
         <div>
-            {links.length > 3 ?
-                <nav>
-                    <ul className="pagination">
-                        {links.map(({active, label, url}) => {
-                            return (
-                                <li key={label} className={active ? 'active' : ''}>
-                                    <a href={url}><span dangerouslySetInnerHTML={{ __html: label }}></span></a>
-                                </li>
-                            )
-                        })}
-                    </ul>
+            {links.length > 3 ? (
+                <nav className="mt-4">
+                <ul className="flex">
+                    {links.map(({ active, label, url }) => (
+                    <li key={label} className={`mr-2 ${active ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'} rounded-full`}>
+                        <a
+                        href={url}
+                        className="block px-4 py-2"
+                        dangerouslySetInnerHTML={{ __html: label }}
+                        ></a>
+                    </li>
+                    ))}
+                </ul>
                 </nav>
-                :
-                null
-            }
+            ) : null}
         </div>
     )
 }

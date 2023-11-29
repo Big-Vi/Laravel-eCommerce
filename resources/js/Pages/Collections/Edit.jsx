@@ -28,14 +28,34 @@ export default function Edit({ collection }) {
     }
 
     return (
-        <div className="">
-            <Link href="/collections">Go back</Link>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="title">Title</label>
-                <input id="title" type="text" placeholder="Title" value={values.title} onChange={handleChange}/>
-                <button type="submit">Update</button>
+        <div className="max-w-md mx-auto mt-8 p-4">
+            <Link href="/collections" className="text-blue-500 hover:underline mb-4 block">Go back</Link>
+            
+            <form onSubmit={handleSubmit} className="mb-4">
+                <label htmlFor="title" className="block text-gray-700">Title</label>
+                <input
+                id="title"
+                type="text"
+                placeholder="Title"
+                value={values.title}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                />
+                
+                <button
+                type="submit"
+                className="bg-black text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600"
+                >
+                Update
+                </button>
             </form>
-            <button onClick={destroy}>Delete</button>
+            
+            <button
+                onClick={destroy}
+                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+            >
+                Delete
+            </button>
         </div>
     )
 }

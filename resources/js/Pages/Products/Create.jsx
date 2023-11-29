@@ -33,26 +33,44 @@ export default function Create({ collections }) {
     }
 
     return (
-        <div className="">
-            <Link href="/products">Go back</Link>
+        <div className="max-w-md mx-auto mt-8 p-4">
+            <Link href="/products" className="text-blue-500 hover:underline mb-4 block">Go back</Link>
+            
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input id="title" type="text" placeholder="Title" value={values.title} onChange={handleChange}/>
+                <div className="mb-4">
+                <label htmlFor="title" className="block text-gray-700 mb-1">Title</label>
+                <input
+                    id="title"
+                    type="text"
+                    placeholder="Title"
+                    value={values.title}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                />
                 </div>
 
-                <div>
-                    <label htmlFor="collectionsSelected">Select collections:</label>
-                    <select id="collectionsSelected" name="collectionsSelected" onChange={handleSelectChange} multiple>
-                        {collections.data.map(collection => 
-                            <option value={collection.id} key={collection.id}>{collection.title}</option>
-                        )}
-                    </select>
+                <div className="mb-4">
+                <label htmlFor="collectionsSelected" className="block text-gray-700 mb-1">Select collections:</label>
+                <select
+                    id="collectionsSelected"
+                    name="collectionsSelected"
+                    onChange={handleSelectChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    multiple
+                >
+                    {collections.data.map(collection => (
+                    <option value={collection.id} key={collection.id}>{collection.title}</option>
+                    ))}
+                </select>
                 </div>
 
-                <button type="submit">Submit</button>
+                <button
+                type="submit"
+                className="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                >
+                Submit
+                </button>
             </form>
-
         </div>
     )
 }

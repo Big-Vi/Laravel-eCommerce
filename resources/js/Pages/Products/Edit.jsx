@@ -38,38 +38,60 @@ export default function Edit({ product, collections, collectionsSelected }) {
     }
 
     return (
-        <div className="">
-            <Link href="/products">Go back</Link>
+        <div className="max-w-md mx-auto mt-8 p-4">
+            <Link href="/products" className="text-blue-500 hover:underline mb-4 block">Go back</Link>
+            
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input id="title" type="text" placeholder="Title" value={values.title} onChange={handleChange} />
+                <div className="mb-4">
+                <label htmlFor="title" className="block text-gray-700 mb-1">Title</label>
+                <input
+                    id="title"
+                    type="text"
+                    placeholder="Title"
+                    value={values.title}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                />
                 </div>
-                <div>
-                    <label htmlFor="collectionsSelected">Select collections:</label>
-                    <select
-                        id="collectionsSelected"
-                        name="collectionsSelected"
-                        onChange={handleSelectChange}
-                        multiple
+
+                <div className="mb-4">
+                <label htmlFor="collectionsSelected" className="block text-gray-700 mb-1">Select collections:</label>
+                <select
+                    id="collectionsSelected"
+                    name="collectionsSelected"
+                    onChange={handleSelectChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    multiple
+                >
+                    <option value="" className="">Select collections</option>
+                    {collections.data.map((collection) => (
+                    <option
+                        value={collection.id}
+                        key={collection.id}
+                        style={{
+                            fontWeight: values.collectionsSelected.includes(collection.id) ? 'bold' : 'normal',
+                        }}
                     >
-                        <option value="">Select collections</option>
-                        {collections.data.map((collection) => (
-                            <option
-                                value={collection.id}
-                                key={collection.id}
-                                style={{
-                                    fontWeight: values.collectionsSelected.includes(collection.id) ? 'bold' : 'normal',
-                                }}
-                            >
-                                {collection.title}
-                            </option>
-                        ))}
-                    </select>
+                        {collection.title}
+                    </option>
+                    ))}
+                </select>
                 </div>
-                <button type="submit">Update</button>
+
+                <button
+                type="submit"
+                className="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600 mr-2 mb-2"
+                >
+                Update
+                </button>
             </form>
-            <button onClick={destroy}>Delete</button>
+
+            <button
+                onClick={destroy}
+                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+            >
+                Delete
+            </button>
         </div>
     );
 }
