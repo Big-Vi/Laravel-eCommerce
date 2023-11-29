@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { router } from '@inertiajs/react'
+import usePrevious from '@/Hooks/usePrevious';
 
 export default function SearchFilter() {
     const [values, setValues] = useState({
         search: ''
     })
+
+    const prevValues = usePrevious(values);
 
     const handleChange = (e) => {
         const key = e.target.id;
@@ -26,8 +29,7 @@ export default function SearchFilter() {
             replace: true,
             preserveState: true
         });
-
-      }, [values]);
+    }, [values, prevValues]);
 
     return (
         <div>
